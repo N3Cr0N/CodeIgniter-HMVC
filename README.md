@@ -1,5 +1,5 @@
 # Codeigniter-HMVC
-CodeIgniter 3.1.10 with Modular Extensions - HMVC
+CodeIgniter 3.1.10 with Modular Extensions - HMVC (With PHP backward functions for each() and list() -> https://github.com/N3Cr0N/HMVC)
 
 
 # Modular Extensions - HMVC
@@ -13,7 +13,7 @@ Module Controllers can be used as normal Controllers or HMVC Controllers and the
 
 
 ## Server Requirements
-PHP version 5.6 or newer is recommended.
+- PHP version 5.6 or newer is recommended (We have include a backward function for each() and list() in HMVC, you can use PHP v5.6 or v7.2)
 
 ## Source Modular Extensions
 * [Wiredesignz](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc)
