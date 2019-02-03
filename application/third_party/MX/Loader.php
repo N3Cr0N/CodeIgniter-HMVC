@@ -45,7 +45,7 @@ class MX_Loader extends CI_Loader
      *
      * @method initialize
      *
-     * @param  [type]     $controller [description]
+     * @param  boolean     $controller [description]
      *
      * @return [type]                 [description]
      */
@@ -60,7 +60,7 @@ class MX_Loader extends CI_Loader
 
             /* references to ci loader variables */
             foreach (get_class_vars('CI_Loader') as $var => $val) {
-                if ($var != '_ci_ob_level') {
+                if ($var !== '_ci_ob_level') {
                     $this->$var =& CI::$APP->load->$var;
                 }
             }
@@ -265,7 +265,7 @@ class MX_Loader extends CI_Loader
         }
 
         /* load library config file as params */
-        if ($params == null) {
+        if ($params === null) {
 
             // Backward function
             // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
@@ -275,7 +275,7 @@ class MX_Loader extends CI_Loader
             } else {
                 [$path2, $file] = Modules::find($_alias, $this->_module, 'config/');
             }
-            ($path2) && $params = Modules::load_file($file, $path2, 'config');
+            $path2 && $params = Modules::load_file($file, $path2, 'config');
         }
 
         if ($path === false) {
@@ -303,7 +303,7 @@ class MX_Loader extends CI_Loader
     public function libraries($libraries)
     {
         foreach ($libraries as $library => $alias) {
-            (is_int($library)) ? $this->library($alias) : $this->library($library, null, $alias);
+            is_int($library) ? $this->library($alias) : $this->library($library, null, $alias);
         }
         return $this;
     }
@@ -341,7 +341,7 @@ class MX_Loader extends CI_Loader
             [$path, $_model] = Modules::find(strtolower($model), $this->_module, 'models/');
         }
 
-        if ($path == false) {
+        if ($path === false) {
             /* check application & packages */
             parent::model($model, $object_name, $connect);
         } else {
@@ -376,7 +376,7 @@ class MX_Loader extends CI_Loader
     public function models($models)
     {
         foreach ($models as $model => $alias) {
-            (is_int($model)) ? $this->model($alias) : $this->model($model, $alias);
+            is_int($model) ? $this->model($alias) : $this->model($model, $alias);
         }
         return $this;
     }
@@ -532,7 +532,7 @@ class MX_Loader extends CI_Loader
      */
     public function __get($class)
     {
-        return (isset($this->controller)) ? $this->controller->$class : CI::$APP->$class;
+        return isset($this->controller) ? $this->controller->$class : CI::$APP->$class;
     }
 
     /**
@@ -552,7 +552,7 @@ class MX_Loader extends CI_Loader
             $_ci_path = '';
 
             /* add file extension if not provided */
-            $_ci_file = (pathinfo($_ci_view, PATHINFO_EXTENSION)) ? $_ci_view : $_ci_view.EXT;
+            $_ci_file = pathinfo($_ci_view, PATHINFO_EXTENSION) ? $_ci_view : $_ci_view.EXT;
 
             foreach ($this->_ci_view_paths as $path => $cascade) {
                 if (file_exists($view = $path.$_ci_file)) {
@@ -583,14 +583,14 @@ class MX_Loader extends CI_Loader
         ob_start();
 
         if ((bool) @ini_get('short_open_tag') === false && CI::$APP->config->item('rewrite_short_tags') == true) {
-            echo eval('?>'.preg_replace("/;*\s*\?>/", "; ?>", str_replace('<?=', '<?php echo ', file_get_contents($_ci_path))));
+            echo eval('?>'.preg_replace('/;*\s*\?>/', '; ?>', str_replace('<?=', '<?php echo ', file_get_contents($_ci_path))));
         } else {
             include($_ci_path);
         }
 
         log_message('debug', 'File loaded: '.$_ci_path);
 
-        if ($_ci_return == true) {
+        if ($_ci_return === true) {
             return ob_get_clean();
         }
 
@@ -625,7 +625,7 @@ class MX_Loader extends CI_Loader
                 [$path, $file] = Modules::find('constants', $this->_module, 'config/');
             }
             /* module constants file */
-            if ($path != false) {
+            if ($path !== false) {
                 include_once $path.$file.EXT;
             }
 
@@ -639,13 +639,13 @@ class MX_Loader extends CI_Loader
             }
 
             /* module autoload file */
-            if ($path != false) {
+            if ($path !== false) {
                 $autoload = array_merge(Modules::load_file($file, $path, 'autoload'), $autoload);
             }
         }
 
         /* nothing to do */
-        if (count($autoload) == 0) {
+        if (count($autoload) === 0) {
             return;
         }
 
@@ -675,30 +675,32 @@ class MX_Loader extends CI_Loader
         // Autoload drivers
         if (isset($autoload['drivers'])) {
             foreach ($autoload['drivers'] as $item => $alias) {
-                (is_int($item)) ? $this->driver($alias) : $this->driver($item, $alias);
+                is_int($item) ? $this->driver($alias) : $this->driver($item, $alias);
             }
         }
 
         /* autoload database & libraries */
         if (isset($autoload['libraries'])) {
-            if (in_array('database', $autoload['libraries'])) {
-                /* autoload database */
-                if (! $db = CI::$APP->config->item('database')) {
-                    $this->database();
-                    $autoload['libraries'] = array_diff($autoload['libraries'], array('database'));
-                }
+            if (!$db = CI::$APP->config->item('database') && in_array('database', $autoload['libraries'])) {
+                $this->database();
+
+                $autoload['libraries'] = array_diff($autoload['libraries'], array('database'));
             }
+
+
+
+
 
             /* autoload libraries */
             foreach ($autoload['libraries'] as $library => $alias) {
-                (is_int($library)) ? $this->library($alias) : $this->library($library, null, $alias);
+                is_int($library) ? $this->library($alias) : $this->library($library, null, $alias);
             }
         }
 
         /* autoload models */
         if (isset($autoload['model'])) {
             foreach ($autoload['model'] as $model => $alias) {
-                (is_int($model)) ? $this->model($alias) : $this->model($model, $alias);
+                is_int($model) ? $this->model($alias) : $this->model($model, $alias);
             }
         }
 
@@ -712,4 +714,4 @@ class MX_Loader extends CI_Loader
 }
 
 /** load the CI class for Modular Separation **/
-(class_exists('CI', false)) or require dirname(__FILE__).'/Ci.php';
+(class_exists('CI', false)) or require_once __DIR__ .'/Ci.php';

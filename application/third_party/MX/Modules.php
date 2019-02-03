@@ -64,7 +64,7 @@ class Modules
     {
         $method = 'index';
 
-        if (($pos = strrpos($module, '/')) != false) {
+        if (($pos = strrpos($module, '/')) !== false) {
             $method = substr($module, $pos + 1);
             $module = substr($module, 0, $pos);
         }
@@ -75,7 +75,7 @@ class Modules
                 $args = func_get_args();
                 $output = call_user_func_array(array($class, $method), array_slice($args, 1));
                 $buffer = ob_get_clean();
-                return ($output !== null) ? $output : $buffer;
+                return $output ?? $buffer;
             }
         }
 
@@ -98,7 +98,7 @@ class Modules
         // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
         if (version_compare(phpversion(), '7.1', '<')) {
             // php version isn't high enough
-            (is_array($module)) ? list($module, $params) = each($module) : $params = null;
+            is_array($module) ? list($module, $params) = each($module) : $params = null;
         } else {
             if (!is_array($module)) {
                 $params = null;
@@ -136,7 +136,7 @@ class Modules
             $path = APPPATH.'controllers/'.CI::$APP->router->directory;
 
             /* load the controller class */
-            $class = $class.CI::$APP->config->item('controller_suffix');
+            $class .= CI::$APP->config->item('controller_suffix');
             self::load_file(ucfirst($class), $path);
 
             /* create and register the new controller */
@@ -159,7 +159,7 @@ class Modules
     public static function autoload($class)
     {
         /* don't autoload CI_ prefixed classes or those using the config subclass_prefix */
-        if (strstr($class, 'CI_') or strstr($class, config_item('subclass_prefix'))) {
+        if (strstr($class, 'CI_') || strstr($class, config_item('subclass_prefix'))) {
             return;
         }
 
@@ -212,7 +212,7 @@ class Modules
             /* load config or language array */
             include $location;
 
-            if (! isset($$type) or ! is_array($$type)) {
+            if (! isset($$type) || ! is_array($$type)) {
                 show_error("{$location} does not contain a valid {$type} array");
             }
 
@@ -241,7 +241,7 @@ class Modules
         $segments = explode('/', $file);
 
         $file = array_pop($segments);
-        $file_ext = (pathinfo($file, PATHINFO_EXTENSION)) ? $file : $file.EXT;
+        $file_ext = pathinfo($file, PATHINFO_EXTENSION) ? $file : $file.EXT;
 
         $path = ltrim(implode('/', $segments).'/', '/');
         $module ? $modules[$module] = $path : $modules = array();
@@ -250,11 +250,11 @@ class Modules
             $modules[array_shift($segments)] = ltrim(implode('/', $segments).'/', '/');
         }
 
-        foreach (Modules::$locations as $location => $offset) {
+        foreach (self::$locations as $location => $offset) {
             foreach ($modules as $module => $subpath) {
                 $fullpath = $location.$module.'/'.$base.$subpath;
 
-                if ($base == 'libraries/' or $base == 'models/') {
+                if ($base === 'libraries/' || $base === 'models/') {
                     if (is_file($fullpath.ucfirst($file_ext))) {
                         return array($fullpath, ucfirst($file));
                     }
@@ -306,7 +306,7 @@ class Modules
             $key = str_replace(array(':any', ':num'), array('.+', '[0-9]+'), $key);
 
             if (preg_match('#^'.$key.'$#', $uri)) {
-                if (strpos($val, '$') !== false and strpos($key, '(') !== false) {
+                if (strpos($val, '$') !== false && strpos($key, '(') !== false) {
                     $val = preg_replace('#^'.$key.'$#', $val, $uri);
                 }
                 return explode('/', $module.'/'.$val);
