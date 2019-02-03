@@ -1,4 +1,4 @@
-<?php (defined('BASEPATH')) or exit('No direct script access allowed');
+<?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /* load the MX core module class */
 require dirname(__FILE__).'/Modules.php';
@@ -108,8 +108,15 @@ class MX_Router extends CI_Router
             $segments = $routes;
         }
 
-        /* get the segments array elements */
-        list($module, $directory, $controller) = array_pad($segments, 3, null);
+        // Backward function
+        // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
+        if (version_compare(phpversion(), '7.1', '<')) {
+            // php version isn't high enough
+            /* get the segments array elements */
+            list($module, $directory, $controller) = array_pad($segments, 3, null);
+        } else {
+            [$module, $directory, $controller] = array_pad($segments, 3, null);
+        }
 
         /* check modules */
         foreach (Modules::$locations as $location => $offset) {
