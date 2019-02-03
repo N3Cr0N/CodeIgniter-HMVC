@@ -35,6 +35,18 @@
  **/
 class MX_Config extends CI_Config
 {
+    /**
+     * [load description]
+     *
+     * @method load
+     *
+     * @param  string  $file            [description]
+     * @param  boolean $use_sections    [description]
+     * @param  boolean $fail_gracefully [description]
+     * @param  string  $_module         [description]
+     *
+     * @return [type]                   [description]
+     */
     public function load($file = '', $use_sections = false, $fail_gracefully = false, $_module = '')
     {
         if (in_array($file, $this->is_loaded, true)) {

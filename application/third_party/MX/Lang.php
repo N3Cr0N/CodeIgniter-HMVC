@@ -35,6 +35,20 @@
  **/
 class MX_Lang extends CI_Lang
 {
+    /**
+     * [load description]
+     *
+     * @method load
+     *
+     * @param  [type]  $langfile   [description]
+     * @param  string  $lang       [description]
+     * @param  boolean $return     [description]
+     * @param  boolean $add_suffix [description]
+     * @param  string  $alt_path   [description]
+     * @param  string  $_module    [description]
+     *
+     * @return [type]              [description]
+     */
     public function load($langfile, $lang = '', $return = false, $add_suffix = true, $alt_path = '', $_module = '')
     {
         if (is_array($langfile)) {

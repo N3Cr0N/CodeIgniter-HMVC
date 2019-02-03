@@ -52,9 +52,14 @@ class Modules
     public static $locations;
 
     /**
-    * Run a module controller method
-    * Output from module is buffered and returned.
-    **/
+     * [Run a module controller method, output from module is buffered and returned.]
+     *
+     * @method run
+     *
+     * @param  [type] $module [description]
+     *
+     * @return [type]         [description]
+     */
     public static function run($module)
     {
         $method = 'index';
@@ -77,7 +82,15 @@ class Modules
         log_message('error', "Module controller failed to run: {$module}/{$method}");
     }
 
-    /** Load a module controller **/
+    /**
+     * [Load a module controller]
+     *
+     * @method load
+     *
+     * @param  [type] $module [description]
+     *
+     * @return [type]         [description]
+     */
     public static function load($module)
     {
         // Backward function
@@ -134,7 +147,15 @@ class Modules
         return self::$registry[$alias];
     }
 
-    /** Library base class autoload **/
+    /**
+     * [Library base class autoload]
+     *
+     * @method autoload
+     *
+     * @param  [type]   $class [description]
+     *
+     * @return [type]          [description]
+     */
     public static function autoload($class)
     {
         /* don't autoload CI_ prefixed classes or those using the config subclass_prefix */
@@ -164,7 +185,18 @@ class Modules
         }
     }
 
-    /** Load a module file **/
+    /**
+     * [Load a module file]
+     *
+     * @method load_file
+     *
+     * @param  [type]    $file   [description]
+     * @param  [type]    $path   [description]
+     * @param  string    $type   [description]
+     * @param  boolean   $result [description]
+     *
+     * @return [type]            [description]
+     */
     public static function load_file($file, $path, $type = 'other', $result = true)
     {
         $file = str_replace(EXT, '', $file);
@@ -191,11 +223,19 @@ class Modules
     }
 
     /**
-    * Find a file
-    * Scans for files located within modules directories.
-    * Also scans application directories for models, plugins and views.
-    * Generates fatal error if file not found.
-    **/
+     * [Find a file,
+     *  scans for files located within modules directories,
+     *  also scans application directories for models,
+     *  plugins and views, Generates fatal error if file not found]
+     *
+     * @method find
+     *
+     * @param  [type] $file   [description]
+     * @param  [type] $module [description]
+     * @param  [type] $base   [description]
+     *
+     * @return [type]         [description]
+     */
     public static function find($file, $module, $base)
     {
         $segments = explode('/', $file);
@@ -228,7 +268,16 @@ class Modules
         return array(false, $file);
     }
 
-    /** Parse module routes **/
+    /**
+     * [Parse module routes]
+     *
+     * @method parse_routes
+     *
+     * @param  [type]       $module [description]
+     * @param  [type]       $uri    [description]
+     *
+     * @return [type]               [description]
+     */
     public static function parse_routes($module, $uri)
     {
         /* load the route file */

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed');
 
 /* load the MX core module class */
-require dirname(__FILE__).'/Modules.php';
+require_once __DIR__ .'/Modules.php';
 
 /**
  * Modular Extensions - HMVC
@@ -40,11 +40,25 @@ class MX_Router extends CI_Router
     public $module;
     private $located = 0;
 
+    /**
+     * [fetch_module description]
+     *
+     * @method fetch_module
+     *
+     * @return [type]       [description]
+     */
     public function fetch_module()
     {
         return $this->module;
     }
 
+    /**
+     * [_set_request description]
+     *
+     * @method _set_request
+     *
+     * @param  array        $segments [description]
+     */
     protected function _set_request($segments = array())
     {
         if ($this->translate_uri_dashes === true) {
@@ -78,11 +92,21 @@ class MX_Router extends CI_Router
         $this->uri->rsegments = $segments;
     }
 
+    /**
+     * [_set_404override_controller description]
+     *
+     * @method _set_404override_controller
+     */
     protected function _set_404override_controller()
     {
         $this->_set_module_path($this->routes['404_override']);
     }
 
+    /**
+     * [_set_default_controller description]
+     *
+     * @method _set_default_controller
+     */
     protected function _set_default_controller()
     {
         if (empty($this->directory)) {
@@ -97,7 +121,15 @@ class MX_Router extends CI_Router
         }
     }
 
-    /** Locate the controller **/
+    /**
+     * [Locate the controller]
+     *
+     * @method locate
+     *
+     * @param  [type] $segments [description]
+     *
+     * @return [type]           [description]
+     */
     public function locate($segments)
     {
         $this->located = 0;
@@ -191,7 +223,13 @@ class MX_Router extends CI_Router
         $this->located = -1;
     }
 
-    /* set module path */
+    /**
+     * [set module path]
+     *
+     * @method _set_module_path
+     *
+     * @param  [type]           &$_route [description]
+     */
     protected function _set_module_path(&$_route)
     {
         if (! empty($_route)) {
@@ -215,6 +253,13 @@ class MX_Router extends CI_Router
         }
     }
 
+    /**
+     * [set_class description]
+     *
+     * @method set_class
+     *
+     * @param  [type]    $class [description]
+     */
     public function set_class($class)
     {
         $suffix = $this->config->item('controller_suffix');
