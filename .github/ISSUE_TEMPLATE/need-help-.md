@@ -2,8 +2,8 @@
 name: Need help?
 about: Describe the help
 title: ''
-labels: ''
-assignees: ''
+labels: help wanted
+assignees: N3Cr0N
 
 ---
 
