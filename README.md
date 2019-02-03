@@ -1,5 +1,5 @@
 # Codeigniter-HMVC
-CodeIgniter 3.1.10 with Modular Extensions - HMVC (With PHP backward functions for each() and list() -> https://github.com/N3Cr0N/HMVC)
+CodeIgniter 3.1.10 with Modular Extensions - HMVC (With PHP backward functions for each() and list() -> https://github.com/N3Cr0N/HMVC) and code optimisation
 
 
 # Modular Extensions - HMVC
