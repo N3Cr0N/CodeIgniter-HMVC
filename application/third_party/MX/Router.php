@@ -132,6 +132,10 @@ class MX_Router extends CI_Router
      */
     public function locate($segments)
     {
+        // Clear var $this->directory before search controller in function locate() of the Router class.
+        // Solve the problem of trying to load a "root" controller using Modules::run('controller/method') after loading a module controller
+        // with Modules::run('module/controller/method')
+        $this->directory = null;
         $this->located = 0;
         $ext = $this->config->item('controller_suffix').EXT;
 
@@ -169,9 +173,8 @@ class MX_Router extends CI_Router
                             if (is_file($source.ucfirst($controller).$ext)) {
                                 $this->located = 3;
                                 return array_slice($segments, 2);
-                            } else {
-                                $this->located = -1;
                             }
+                            $this->located = -1;
                         }
                     } elseif (is_file($source.ucfirst($directory).$ext)) {
                         $this->located = 2;
@@ -201,11 +204,9 @@ class MX_Router extends CI_Router
             }
 
             /* application sub-sub-directory controller exists? */
-            if ($controller) {
-                if (is_file(APPPATH.'controllers/'.$module.'/'.$directory.'/'.ucfirst($controller).$ext)) {
-                    $this->directory = $module.'/'.$directory.'/';
-                    return array_slice($segments, 2);
-                }
+            if ($controller && is_file(APPPATH . 'controllers/' . $module . '/' . $directory . '/' . ucfirst($controller) . $ext)) {
+                $this->directory = $module.'/'.$directory.'/';
+                return array_slice($segments, 2);
             }
         }
 
@@ -219,7 +220,6 @@ class MX_Router extends CI_Router
         if (is_file(APPPATH.'controllers/'.ucfirst($module).$ext)) {
             return $segments;
         }
-
         $this->located = -1;
     }
 
@@ -228,7 +228,7 @@ class MX_Router extends CI_Router
      *
      * @method _set_module_path
      *
-     * @param  [type]           &$_route [description]
+     * @param  [type]  &$_route [description]
      */
     protected function _set_module_path(&$_route)
     {
@@ -263,7 +263,9 @@ class MX_Router extends CI_Router
     public function set_class($class)
     {
         $suffix = $this->config->item('controller_suffix');
-        if (strpos($class, $suffix) === false) {
+        // Fixing Error Message: strpos(): Non-string needles will be interpreted as strings in the future.
+        // Use an explicit chr() call to preserve the current behavior.
+        if ($suffix && strpos($class, $suffix) === false) {
             $class .= $suffix;
         }
         parent::set_class($class);
