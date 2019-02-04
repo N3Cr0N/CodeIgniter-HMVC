@@ -116,7 +116,6 @@ class Modules
 
         /* create or return an existing controller from the registry */
         if (!isset(self::$registry[$alias])) {
-
         // Backward function
             // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
             if (version_compare(phpversion(), '7.1', '<')) {
@@ -282,8 +281,7 @@ class Modules
     {
         /* load the route file */
         if (! isset(self::$routes[$module])) {
-
-        // Backward function
+            // Backward function
             // Before PHP 7.1.0, list() only worked on numerical arrays and assumes the numerical indices start at 0.
             if (version_compare(phpversion(), '7.1', '<')) {
                 // php version isn't high enough
@@ -301,8 +299,22 @@ class Modules
             return;
         }
 
+        // Add http verb support for each module routing
+        $http_verb = isset($_SERVER['REQUEST_METHOD']) ? strtolower($_SERVER['REQUEST_METHOD']) : 'cli';
+
         /* parse module routes */
         foreach (self::$routes[$module] as $key => $val) {
+            // Add http verb support for each module routing
+            if (is_array($val)) {
+                $val = array_change_key_case($val, CASE_LOWER);
+
+                if (isset($val[$http_verb])) {
+                    $val = $val[$http_verb];
+                } else {
+                    continue;
+                }
+            }
+
             $key = str_replace(array(':any', ':num'), array('.+', '[0-9]+'), $key);
 
             if (preg_match('#^'.$key.'$#', $uri)) {
