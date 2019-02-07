@@ -24,7 +24,7 @@ class Frontend extends FrontendController
      */
     public function __construct()
     {
-        //
+        // To inherit directly the attributes of the parent class.
         parent::__construct();
     }
 
