@@ -18,6 +18,9 @@ Module Controllers can be used as normal Controllers or HMVC Controllers and the
 ## Source Modular Extensions
 * [Wiredesignz](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc)
 
+## Source Whoops framework
+* [Whoops](https://github.com/filp/whoops)
+
 ## CodeIgniter 3 Documentation
 
 * [User guide](https://codeigniter.com/user_guide)
