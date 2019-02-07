@@ -1,5 +1,5 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 ?><!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,6 +78,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
 		<p>The corresponding controller for this page is found at:</p>
 		<code>application/modules/welcome/controllers/Welcome.php</code>
+
+        <p>The base url is:</p>
+        <code><?php echo base_url(); ?></code>
+
 
 		<p>If you are exploring CodeIgniter for the very first time, you should start by reading the <a href="user_guide/">User Guide</a>.</p>
 	</div>
