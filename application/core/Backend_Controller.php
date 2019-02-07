@@ -39,8 +39,8 @@ class BackendController extends MY_Controller
         // CI profiler
         $this->output->enable_profiler(true);
 
-        // This function returns the main Code Igniter object.
-        // Normally, to call any of the available Code Igniter object or pre defined library classes then you need to declar.
+        // This function returns the main CodeIgniter object.
+        // Normally, to call any of the available CodeIgniter object or pre defined library classes then you need to declare.
         $CI =& get_instance();
 
         //Example data

@@ -22,7 +22,7 @@ class FrontendController extends MY_Controller
 
     /**
      * An array of variables to be passed through to the
-     * view, layout
+     * view, layout, ....
      */
     protected $data = array();
 
@@ -39,8 +39,8 @@ class FrontendController extends MY_Controller
         // CI Profiler for debugging
         $this->output->enable_profiler(true);
 
-        // This function returns the main Code Igniter object.
-        // Normally, to call any of the available Code Igniter object or pre defined library classes then you need to declar.
+        // This function returns the main CodeIgniter object.
+        // Normally, to call any of the available CodeIgniter object or pre defined library classes then you need to declare.
         $CI =& get_instance();
 
         // Example data
