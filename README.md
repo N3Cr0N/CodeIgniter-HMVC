@@ -10,6 +10,24 @@ HMVC stands for Hierarchical Model View Controller.
 
 Module Controllers can be used as normal Controllers or HMVC Controllers and they can be used as widgets to help you build view partials.
 
+# Whoops Framework
+
+![Whoops!](http://i.imgur.com/0VQpe96.png)
+
+**Whoops** is an error handler framework for PHP. Out-of-the-box, it provides a pretty
+error interface that helps you debug your web projects, but at heart it's a simple yet
+powerful stacked error handling system.
+
+**Features**
+
+- Flexible, stack-based error handling
+- Stand-alone library with (currently) no required dependencies
+- Simple API for dealing with exceptions, trace frames & their data
+- Includes a pretty rad error page for your webapp projects
+- Includes the ability to [open referenced files directly in your editor and IDE](https://github.com/filp/whoops/blob/master/docs/Open%20Files%20In%20An%20Editor.md)
+- Includes handlers for different response formats (JSON, XML, SOAP)
+- Easy to extend and integrate with existing libraries
+- Clean, well-structured & tested code-base
 
 
 ## Server Requirements
@@ -18,7 +36,7 @@ Module Controllers can be used as normal Controllers or HMVC Controllers and the
 ## Source Modular Extensions
 * [Wiredesignz](https://bitbucket.org/wiredesignz/codeigniter-modular-extensions-hmvc)
 
-## Source Whoops framework
+## Source Whoops Framework
 * [Whoops](https://github.com/filp/whoops)
 
 ## CodeIgniter 3 Documentation
