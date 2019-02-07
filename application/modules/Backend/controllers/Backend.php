@@ -17,6 +17,15 @@
 
 class Backend extends BackendController
 {
+    //
+    public $CI;
+
+    /**
+     * An array of variables to be passed through to the
+     * view, layout,....
+     */
+    protected $data = array();
+
     /**
      * [__construct description]
      *
@@ -24,7 +33,7 @@ class Backend extends BackendController
      */
     public function __construct()
     {
-        //
+        // To inherit directly the attributes of the parent class.
         parent::__construct();
     }
 
