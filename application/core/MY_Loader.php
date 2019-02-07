@@ -24,13 +24,19 @@ class MY_Loader extends MX_Loader
     public $CI;
 
     /**
+     * An array of variables to be passed through to the
+     * view, layout,....
+     */
+    protected $data = array();
+
+    /**
      * [__construct description]
      *
      * @method __construct
      */
     public function __construct()
     {
-        //
+        // To inherit directly the attributes of the parent class.
         parent::__construct();
 
         //

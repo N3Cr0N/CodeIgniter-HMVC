@@ -22,7 +22,7 @@ class MY_Controller extends MX_Controller
 
     /**
      * An array of variables to be passed through to the
-     * view, layout
+     * view, layout,....
      */
     protected $data = array();
 
@@ -33,7 +33,7 @@ class MY_Controller extends MX_Controller
      */
     public function __construct()
     {
-        // Load HMVC MX controller
+        // To inherit directly the attributes of the parent class.
         parent::__construct();
 
         // This function returns the main CodeIgniter object.
