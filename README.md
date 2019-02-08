@@ -207,7 +207,7 @@ powerful stacked error handling system.
 
 You can also use pluggable handlers, such as [SOAP handler](https://github.com/whoops-php/soap).
 
-## Authors
+## Whoops Authors
 
 This library was primarily developed by [Filipe Dobreira](https://github.com/filp), and is currently maintained by [Denis Sokolov](https://github.com/denis-sokolov). A lot of awesome fixes and enhancements were also sent in by [various contributors](https://github.com/filp/whoops/contributors). Special thanks to [Graham Campbell](https://github.com/GrahamCampbell) and [Markus Staab](https://github.com/staabm) for continuous participation.
 
