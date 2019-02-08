@@ -176,7 +176,7 @@ A. Yes and No. Like Modular Separation, Modular Extensions makes modules “port
 
 Modular HMVC means modular MVC triads. Modular Separation and Modular Extensions allows related controllers, models, libraries, views, etc. to be grouped together in module directories and used like a mini application. But, Modular Extensions goes one step further and allows those modules to “talk” to each other. You can get controller output without having to go out through the http interface again.
 
-# Whoops Framework
+# Whoops Error Handling Framework
 
 ![Whoops!](http://i.imgur.com/0VQpe96.png)
 
