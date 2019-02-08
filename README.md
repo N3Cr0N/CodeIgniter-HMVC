@@ -195,6 +195,23 @@ powerful stacked error handling system.
 - Easy to extend and integrate with existing libraries
 - Clean, well-structured & tested code-base
 
+### Available Handlers
+
+**whoops** currently ships with the following built-in handlers, available in the `Whoops\Handler` namespace:
+
+- [`PrettyPageHandler`](https://github.com/filp/whoops/blob/master/src/Whoops/Handler/PrettyPageHandler.php) - Shows a pretty error page when something goes pants-up
+- [`PlainTextHandler`](https://github.com/filp/whoops/blob/master/src/Whoops/Handler/PlainTextHandler.php) - Outputs plain text message for use in CLI applications
+- [`CallbackHandler`](https://github.com/filp/whoops/blob/master/src/Whoops/Handler/CallbackHandler.php) - Wraps a closure or other callable as a handler. You do not need to use this handler explicitly, **whoops** will automatically wrap any closure or callable you pass to `Whoops\Run::pushHandler`
+- [`JsonResponseHandler`](https://github.com/filp/whoops/blob/master/src/Whoops/Handler/JsonResponseHandler.php) - Captures exceptions and returns information on them as a JSON string. Can be used to, for example, play nice with AJAX requests.
+- [`XmlResponseHandler`](https://github.com/filp/whoops/blob/master/src/Whoops/Handler/XmlResponseHandler.php) - Captures exceptions and returns information on them as a XML string. Can be used to, for example, play nice with AJAX requests.
+
+You can also use pluggable handlers, such as [SOAP handler](https://github.com/whoops-php/soap).
+
+## Authors
+
+This library was primarily developed by [Filipe Dobreira](https://github.com/filp), and is currently maintained by [Denis Sokolov](https://github.com/denis-sokolov). A lot of awesome fixes and enhancements were also sent in by [various contributors](https://github.com/filp/whoops/contributors). Special thanks to [Graham Campbell](https://github.com/GrahamCampbell) and [Markus Staab](https://github.com/staabm) for continuous participation.
+
+This software includes [Prettify](https://github.com/google/code-prettify), licensed under Apache License 2.0. It is bundled only as a performance optimization.
 
 ## Server Requirements
 - PHP version 5.6 or newer is recommended (We have include a backward function for each() and list() in HMVC, you can use PHP v5.6 or v7.2)
