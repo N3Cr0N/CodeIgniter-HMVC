@@ -42,6 +42,6 @@ class MY_Router extends MX_Router
 
         // This function returns the main CodeIgniter object.
         // Normally, to call any of the available CodeIgniter object or pre defined library classes then you need to declare.
-        $CI =& get_instance();
+        //$CI =& get_instance();
     }
 }
