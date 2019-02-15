@@ -230,6 +230,3 @@ This software includes [Prettify](https://github.com/google/code-prettify), lice
 
 * [CodeIgniter](https://github.com/bcit-ci/CodeIgniter)
 * [Translations for CodeIgniter System](https://github.com/bcit-ci/codeigniter3-translations)
-
-
-Test
