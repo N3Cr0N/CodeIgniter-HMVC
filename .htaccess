@@ -21,7 +21,7 @@ Options All -Indexes
 RewriteCond $1 !^(index\.php|(.*)\.swf|forums|images|css|downloads|jquery|js|robots\.txt|favicon\.ico)
 RewriteCond %{REQUEST_FILENAME} !-f
 RewriteCond %{REQUEST_FILENAME} !-d
-RewriteRule ^(.*)$ /CodeIgniter-HMVC.net/index.php/$1 [L,QSA]
+RewriteRule ^(.*)$ /CodeIgniter-HMVC/index.php/$1 [L,QSA]
 </IfModule>
 
 # ######################################################################
