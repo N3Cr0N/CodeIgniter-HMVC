@@ -11,7 +11,6 @@
  * @version    GIT: $Id$
  * @since      Version 0.0.1
  * @filesource
- * @todo       (description)
  *
  */
 
