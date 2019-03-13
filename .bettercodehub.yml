@@ -1,0 +1,17 @@
+component_depth: 1
+languages:
+- php
+
+exclude:
+- /vendor/.*
+- /system/.*
+- /application/cache/.*
+- /application/config/.*
+- /application/controllers/.*
+- /application/helpers/.*
+- /application/hooks/.*
+- /application/language/.*
+- /application/libraries/.*
+- /application/logs/.*
+- /application/models/.*
+- /assets/.*
