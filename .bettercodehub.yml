@@ -15,3 +15,7 @@ exclude:
 - /application/logs/.*
 - /application/models/.*
 - /assets/.*
+- .*/index\.php
+- .*/composer\.json
+- .*/composer\.lock
+- .*/contributing\.md
