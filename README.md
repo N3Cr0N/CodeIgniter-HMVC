@@ -1,6 +1,5 @@
 [![Codacy Badge](https://api.codacy.com/project/badge/Grade/70e8d1aef6e242db918276498ad724f5)](https://app.codacy.com/app/N3Cr0N/CodeIgniter-HMVC?utm_source=github.com&utm_medium=referral&utm_content=N3Cr0N/CodeIgniter-HMVC&utm_campaign=Badge_Grade_Dashboard)
 [![CodeFactor](https://www.codefactor.io/repository/github/n3cr0n/codeigniter-hmvc/badge)](https://www.codefactor.io/repository/github/n3cr0n/codeigniter-hmvc)
-[![BCH compliance](https://bettercodehub.com/edge/badge/N3Cr0N/CodeIgniter-HMVC?branch=master)](https://bettercodehub.com/)
 
 # Codeigniter-HMVC
 CodeIgniter 3.1.10 with HMVC (With PHP backward functions for each() and list() and code optimisations -> https://github.com/N3Cr0N/HMVC) and Whoops Error Handling Framework -> https://github.com/filp/whoops
