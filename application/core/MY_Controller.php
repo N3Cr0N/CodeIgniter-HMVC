@@ -50,7 +50,7 @@ class MY_Controller extends MX_Controller
 }
 
 // Backend controller
-require_once(APPPATH . 'core/Backend_Controller.php');
+require_once(APPPATH.'core/Backend_Controller.php');
 
 // Frontend controller
-require_once(APPPATH . 'core/Frontend_Controller.php');
+require_once(APPPATH.'core/Frontend_Controller.php');
