@@ -1,3 +1,11 @@
+# 2.5.0
+
+* Automatically configure xdebug if available.
+
+# 2.4.1
+
+* Try harder to close all output buffers
+
 # 2.4.0
 
 * Allow to prepend and append handlers.

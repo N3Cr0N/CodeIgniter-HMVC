@@ -17,6 +17,17 @@ use Whoops\Util\TemplateHelper;
 
 class PrettyPageHandler extends Handler
 {
+    const EDITOR_SUBLIME = "sublime";
+    const EDITOR_TEXTMATE = "textmate";
+    const EDITOR_EMACS = "emacs";
+    const EDITOR_MACVIM = "macvim";
+    const EDITOR_PHPSTORM = "phpstorm";
+    const EDITOR_IDEA = "idea";
+    const EDITOR_VSCODE = "vscode";
+    const EDITOR_ATOM = "atom";
+    const EDITOR_ESPRESSO = "espresso";
+    const EDITOR_XDEBUG = "xdebug";
+
     /**
      * Search paths to be scanned for resources, in the reverse
      * order they're declared.
@@ -115,6 +126,9 @@ class PrettyPageHandler extends Handler
             $this->editors['xdebug'] = function ($file, $line) {
                 return str_replace(['%f', '%l'], [$file, $line], ini_get('xdebug.file_link_format'));
             };
+
+            // If xdebug is available, use it as default editor.
+            $this->setEditor('xdebug');
         }
 
         // Add the default, local resource search path:
